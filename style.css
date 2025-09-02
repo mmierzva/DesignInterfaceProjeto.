@@ -35,8 +35,8 @@ footer {
     margin-top: 20px;
 }
 
-.guitarras {
-    width: 70px;
+.guitarras img {
+    width: 200px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
