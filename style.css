@@ -86,8 +86,8 @@ footer {
 }
 
 .contato-form button {
-    background: #0d47a1;
-    color: white;
+    background: #7D0C0C;
+    color: barn red;
     padding: 10px;
     border: none;
     border-radius: 6px;
@@ -97,5 +97,5 @@ footer {
 }
 
 .contato-form button:hover {
-    background: #1976d2;
+    background: #FFFEED;
 }
