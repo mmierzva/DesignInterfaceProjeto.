@@ -18,6 +18,7 @@
             <a href="instrumentos.html">Instrumentos</a>
             <a href="filiais.html">Filiais</a>
             <a href="contato.html">Contato</a>
+            <a href="planilha.html">Planilha</a>
         </nav>
     </header>
 
