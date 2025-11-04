@@ -22,22 +22,61 @@
     </header>
 
     <!-- Conteúdo principal -->
-    <main>
-        <h1>Bem-vindo à Guitar Shop!</h1>
-        <p>Encontre o Instrumento perfeito para você!.</p>
+   <main>
+  <h1>Bem-vindo à Guitar Shop</h1>
+  <p>Encontre o instrumento perfeito para você!.</p>
 
-        <div class="guitarras">
-            <img src="https://cdn.sistemawbuy.com.br/arquivos/f8d1f4a04e988aeb5f9660e041392be7/produtos/65f086dad0731/101db-guitarra-fender-player-telecaster-maple-fingerboard-black-05-65f086fe342a4.jpg"
-                alt="Headstock">
+  <div id="conteudo" class="conteudo-scroll">
+    <p>Carregando conteúdo...</p>
+  </div>
+</main>
 
-            <img src="https://gearhub.cl/cdn/shop/files/Gearhub_Fender_Stratocaster_Custom_Shop_RI_61__Relic_1x1-4_1080x.jpg?v=1704463608"
-                alt="Stratocaster">
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjaU9q0c8c1CHNAz9rPP_2U7LG74Cm6zh82bjlmWBg2uSiIqDuo0D4bR0HKP4BtODa/exec"
+async function carregarConteudo() {
+  const container = document.getElementById('conteudo');
+  container.innerHTML = "<p>Carregando conteúdo...</p>";
 
-            <img src="https://akamai.sscdn.co/gcs/cifra-blog/pt/wp-content/uploads/2023/04/d535732-captador-guitarra.jpg"
-                alt="Stratocaster verde">
-                
-        </div>
-    </main>
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const dados = await res.json();
+    container.innerHTML = '';
+
+    dados.forEach(item => {
+      const bloco = document.createElement('div');
+      bloco.className = 'bloco-item';
+
+      const titulo = document.createElement('h2');
+      titulo.textContent = item.Título || '';
+      bloco.appendChild(titulo);
+
+      const descricao = document.createElement('p');
+      descricao.textContent = item.Descrição || '';
+      bloco.appendChild(descricao);
+
+      if (item.Url && item.Url.startsWith('http')) {
+        if (item.Url.match(/\.(jpg|jpeg|png|gif|webp)$/i) || item.Url.includes('unsplash')) {
+          const img = document.createElement('img');
+          img.src = item.Url;
+          img.alt = item.Título || 'Imagem';
+          bloco.appendChild(img);
+        } else {
+          const link = document.createElement('a');
+          link.href = item.Url;
+          link.textContent = 'Ver mais';
+          bloco.appendChild(link);
+        }
+      }
+
+      container.appendChild(bloco);
+    });
+  } catch (err) {
+    container.innerHTML = "<p>Erro ao carregar dados: " + err.message + "</p>";
+  }
+}
+
+carregarConteudo();
+</script>
 
     <!-- Rodapé -->
     <footer>
